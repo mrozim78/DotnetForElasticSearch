@@ -1,0 +1,44 @@
+@page
+@using Elastic.Kibana.Examples.Search.Models
+@model Elastic.Kibana.Examples.Search.Pages.Search
+@{
+    ViewData["Title"] = "Search";
+}
+<form asp-page="Search" method="Post" name="search" id="searchForm">
+    <div class="controls">
+        <label asp-for="SearchParam.Text">Search</label>
+        <input asp-for="SearchParam.Text" class="form-control">
+        <span asp-validation-for="SearchParam.Text"></span>
+    </div>
+    <div id="success"></div>
+    <button type="submit" class="btn btn-success" id="sendMessageButton">Send Message!</button>
+</form>
+@if (Model.SearchResponse != null)
+{
+   
+    if (Model.SearchResponse.Posts.Count > 0)
+    {
+        <div class="text-center"><b>Result</b></div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <th>Author</th>
+            <th>Date</th>
+            <th>Post</th>
+            </thead>
+            @foreach (Post post in Model.SearchResponse.Posts)
+            {
+                <tr>
+                    <td>@post.UserName</td>
+                    <td>@post.PostDate.ToString("yy-MM-dd")</td>
+                    <td>@post.PostText</td>
+                    </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div class="text-center"><b>Result Is Empty</b></div>
+    }
+    <div class="text-center"><b>Debug information</b></div>
+    <textarea rows="50" class="form-control">@Model.SearchResponse.DebugInformation</textarea>
+}
