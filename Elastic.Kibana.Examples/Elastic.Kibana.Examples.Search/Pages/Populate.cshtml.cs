@@ -21,7 +21,7 @@ namespace Elastic.Kibana.Examples.Search.Pages
         
         public void OnGet()
         {
-            _searchLogic.CreateIndexElastiSearch();
+            _searchLogic.CreateIndexElasticSearch();
             _searchLogic.PopulateElasticSearch();
         }
     }

@@ -12,7 +12,7 @@ namespace Elastic.Kibana.Examples.Search.Logic
             _elasticClient = elasticClient;
         }
 
-        public void CreateIndexElastiSearch()
+        public void CreateIndexElasticSearch()
         {
             _elasticClient.Indices.Create("posts", a => 
                 a.Settings(s=>s.NumberOfReplicas(1).NumberOfShards(1))
